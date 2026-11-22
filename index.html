@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#145dff">
+  <meta name="description" content="СРЕЗ — живой арт-дневник настроений, музыки и незаметных деталей жизни.">
+  <title>СРЕЗ // GENESIS.EXE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body data-mood="impressionism">
+  <canvas class="ambient-canvas" id="ambient-canvas" aria-hidden="true"></canvas>
+  <div class="app-frame">
+    <header class="topbar">
+      <a class="wordmark" href="#home" aria-label="СРЕЗ — на главную"><span class="wordmark-glyph">С</span><span class="wordmark-copy"><strong>СРЕЗ</strong><small>GENESIS.EXE</small></span></a>
+      <nav class="topbar-nav" aria-label="Главная навигация"><button id="archive-nav" type="button">Мои воспоминания <span id="archive-count">04</span></button><button id="create-nav" type="button">Создать страницу <span>＋</span></button></nav>
+      <div class="topbar-status"><span class="status-light"></span> ЛИЧНОЕ ПРОСТРАНСТВО</div>
+    </header>
+
+    <main id="home">
+      <section class="intro-section" aria-labelledby="hero-title">
+        <div class="hero-copy"><p class="eyebrow"><span class="eyebrow-mark">✳</span> REC GENESIS HACKATHON <span class="eyebrow-line"></span> ARTTECH</p><h1 id="hero-title">Поделись эмоцией,<br><em>запечатли моменты жизни.</em></h1><p class="hero-subtitle">Дни, которые чувствуешь, а не просто проживаешь.</p></div>
+        <div class="hero-aside"><blockquote class="hero-quote"><span class="quote-mark">“</span><p>Увидеть мир в песчинке,<br>и небо — в полевом цветке.</p><cite>УИЛЬЯМ БЛЕЙК <span>·</span> «ПРОРОЧЕСТВА НЕВИНОВНОСТИ»</cite></blockquote><aside class="hero-manifesto"><span class="manifesto-label">МАНИФЕСТ / СРЕЗ</span><p>«Срез — это перпендикулярный взгляд на обычный день. Точный отпечаток цвета, звука и скрытых эмоций, которые мы проживаем, но не замечаем в суете».</p><span class="manifesto-mark">✳ 001</span></aside></div>
+      </section>
+
+      <section class="mood-section" id="mood-picker" aria-labelledby="mood-title"><div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-mark">01</span> ВХОД ВО ВНУТРЕННИЙ МИР</p><h2 id="mood-title">Какой сегодня <em>срез?</em></h2></div><span class="section-aside">ВЫБЕРИ СОСТОЯНИЕ, НЕ ПРАВИЛО</span></div><div class="mood-grid" id="mood-options"></div></section>
+
+      <section class="builder-view is-hidden" id="builder-view" aria-labelledby="builder-title">
+        <div class="section-heading builder-heading"><div><p class="eyebrow"><span class="eyebrow-mark">02</span> СТУДИЯ ЛИЧНЫХ АРХИВОВ</p><h2 id="builder-title">Новый <em>фрагмент.</em></h2><p class="builder-mode-note" id="builder-mode-note"></p></div><button class="text-button" id="back-to-moods" type="button">← Сменить атмосферу</button></div>
+        <form class="entry-form" id="entry-form">
+          <div class="builder-columns">
+            <div class="builder-primary">
+              <div class="field-label"><span>01</span> КОГДА ЭТО БЫЛО?</div><div class="date-field"><label class="date-field-label" for="event-date">ДАТА СОБЫТИЯ</label><span class="date-stamp"><strong id="event-date-label">ВЫБРАТЬ ДАТУ</strong><i aria-hidden="true">⌄</i></span><input id="event-date" name="eventDate" type="date" required aria-label="Выбрать дату события"></div>
+              <div class="field-label story-label"><span>02</span> ЧТО ОСТАЛОСЬ С ТОБОЙ?</div><div class="voice-story"><textarea id="diary-text" name="text" rows="7" maxlength="1600" placeholder="Расскажи о дне. Не обязательно по порядку..." required minlength="8"></textarea><button class="voice-button" id="voice-input" type="button" aria-pressed="false"><span class="mic-icon">◉</span><span>Записать голосом</span></button></div><div class="voice-status" id="voice-status" role="status" aria-live="polite"></div><div class="field-meta"><span>ГОЛОС ИЛИ ТЕКСТ — ТВОЙ ВЫБОР</span><span id="character-count">0 / 1600</span></div>
+              <label class="field-label title-field-label" for="entry-title"><span>↳</span> НАЗВАНИЕ СТРАНИЦЫ <small>ПО ЖЕЛАНИЮ</small></label><input id="entry-title" class="title-field-input" type="text" maxlength="72" placeholder="Можно придумать своё или оставить пустым">
+              <div class="form-section letter-field"><label class="field-label" for="future-letter"><span>03</span> ПИСЬМО В БУДУЩЕЕ <small>ЗАПЕЧАТАНО ДО ПРОСМОТРА</small></label><textarea id="future-letter" name="futureLetter" rows="3" maxlength="600" placeholder="Что ты хочешь сказать себе потом?"></textarea><div class="field-meta"><span>ТОЛЬКО ДЛЯ ТЕБЯ, В БУДУЩЕМ</span><span id="letter-count">0 / 600</span></div></div>
+            </div>
+            <div class="builder-secondary">
+              <div class="field-label"><span>04</span> ФОТО-ПЛЁНКА <small>ДО 4 КАДРОВ</small></div><label class="upload-zone" for="photo-input"><span class="upload-symbol">↥</span><span class="upload-title">Добавить кадры в коллаж</span><span class="upload-caption">JPG, PNG, WEBP · до 12 МБ</span><input id="photo-input" type="file" accept="image/*" multiple></label><div class="photo-previews" id="photo-previews" aria-live="polite"></div>
+              <div class="field-label music-label"><span>05</span> ТВОЙ САУНДТРЕК <small>НЕОБЯЗАТЕЛЬНО</small></div><label class="file-audio" for="audio-input"><span class="audio-file-icon">♫</span><span id="audio-file-name">Добавить аудиофайл</span><span class="audio-file-action">ВЫБРАТЬ</span><input id="audio-input" type="file" accept="audio/mpeg,audio/wav,audio/ogg,audio/*"></label><div class="or-divider"><span>ИЛИ ССЫЛКА</span></div><div class="track-fields"><input id="track-name" type="text" placeholder="Трек — исполнитель" aria-label="Название трека и исполнитель"><input id="track-url" type="url" placeholder="Spotify, YouTube, SoundCloud" aria-label="Ссылка на трек"></div><div class="music-controls"><label class="select-wrap"><span>ТЕМП</span><select id="track-tempo"><option value="slow">Медленный</option><option value="medium" selected>Средний</option><option value="fast">Быстрый</option></select></label><label class="select-wrap"><span>ЛАД</span><select id="track-mode"><option value="major">Мажор</option><option value="minor">Минор</option></select></label></div>
+            </div>
+          </div>
+          <button class="primary-button generate-button" type="submit">К рефлексии <span class="button-arrow">↗</span></button>
+        </form>
+      </section>
+
+      <section class="reflection-view is-hidden" id="reflection-view" aria-labelledby="reflection-title"><div class="reflection-paper"><p class="eyebrow"><span class="eyebrow-mark">03</span> МАЛЕНЬКАЯ ПАУЗА</p><h2 id="reflection-title">Насколько важен <em>этот день?</em></h2><p class="reflection-hint">Не думай долго. Какое место он занимает внутри?</p><div class="importance-picker" role="radiogroup" aria-label="Важность дня"><label><input type="radio" name="importance" value="1"><span>1</span><small>мимоходом</small></label><label><input type="radio" name="importance" value="2"><span>2</span><small>спокойно</small></label><label><input type="radio" name="importance" value="3" checked><span>3</span><small>запомню</small></label><label><input type="radio" name="importance" value="4"><span>4</span><small>важно</small></label><label><input type="radio" name="importance" value="5"><span>5</span><small>навсегда</small></label></div><label class="tag-field"><span>ГЛАВНЫЙ МАРКЕР ДНЯ</span><select id="main-tag"><option>Радость</option><option>Восторг</option><option>Грусть</option><option>Расстройство</option><option>Злость</option><option>Обида</option><option>Спокойствие</option><option>Уют</option><option>Близость</option><option>Благодарность</option><option>Другое</option></select></label><div class="reflection-actions"><button class="text-button" id="back-to-builder" type="button">← Вернуться к записи</button><button class="primary-button" id="finish-entry" type="button">Собрать страницу <span class="button-arrow">✳</span></button></div></div></section>
+
+      <section class="memories-section" id="memories" aria-labelledby="memories-title"><div class="section-heading memories-heading"><div><p class="eyebrow"><span class="eyebrow-mark">04</span> ЛИЧНЫЙ АРТ-БУК <span class="eyebrow-line"></span> <span id="archive-subtitle">4 СТРАНИЦЫ</span></p><h2 id="memories-title">Мои <em>воспоминания.</em></h2></div><div class="book-tools"><span class="sort-note">СНАЧАЛА САМОЕ ВАЖНОЕ</span><div class="book-pagination"><button id="book-prev" type="button" aria-label="Предыдущий разворот">←</button><span id="book-page">01 / 02</span><button id="book-next" type="button" aria-label="Следующий разворот">→</button></div></div></div><div class="book-stage"><span class="book-edge book-edge-left"></span><div class="book-spread" id="book-spread" aria-live="polite"></div><span class="book-edge book-edge-right"></span></div><div class="book-caption"><span>ЛИСТАЙ ПО СТРАНИЦАМ</span><span>СОРТИРОВКА ПО ВАЖНОСТИ</span></div></section>
+      <section class="memory-headquarters" id="memory-headquarters" aria-labelledby="hq-title"><div class="hq-heading"><p class="eyebrow"><span class="eyebrow-mark">05</span> ШТАБ-КВАРТИРА ПАМЯТИ</p><h2 id="hq-title">Где живут <em>твои моменты</em></h2></div><div class="hq-console"><div class="hq-orb-space" id="hq-orbs" aria-live="polite"></div><aside class="hq-summary"><span class="hq-summary-label">ЭМОЦИОНАЛЬНЫЙ ПРОФИЛЬ</span><strong id="hq-dominant">Радость ведёт</strong><p id="hq-counts">Считаем сохранённые моменты...</p></aside></div></section>
+      <footer class="site-footer"><span>СРЕЗ // GENESIS.EXE</span><span>MAKE THE INVISIBLE VISIBLE</span><span>ТВОИ ДНИ ОСТАЮТСЯ ТВОИМИ</span></footer>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-title"><button class="dialog-close" id="close-dialog" type="button" aria-label="Закрыть">×</button><div id="detail-content"></div></dialog>
+  <canvas id="color-canvas" width="64" height="64" hidden></canvas>
+</body>
+</html>
